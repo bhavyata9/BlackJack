@@ -1187,7 +1187,7 @@ class BlackJack implements ActionListener // for buttons
         isAllowed = true;
       
       
-      while (isAllowed == false)  // till it generates a card that is not dealt already
+      while (!isAllowed)  // till it generates a card that is not dealt already
       {
         cardNumber = createRandomNum();
         suit = cardArray[cardNumber];

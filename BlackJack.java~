@@ -6,7 +6,7 @@
  * (the dealer and the player) but there is no 
  * option for betting money. 
  * @author: Bhavya Shah
- * @DateModified: January 8th, 2014
+ * @DateModified: January 15th, 2014
  * Course - ICS3U1
  * Teacher - Mr. Cardoso
  */
@@ -967,12 +967,12 @@ class BlackJack implements ActionListener // for buttons
   {
     System.out.println("\n\nInstructions for Black Jack:");
     System.out.println("\nBlackjack is played with one standard 52-card deck, with each denomination assigned a point value.");
-    System.out.println("The cards 2 through 10 are worth their face value. Kings, queens, and jacks are each worth 10, and aces are used as 11");
+    System.out.println("The cards 2 through 10 are worth their face value. Kings, queens, and jacks are each worth 10, and aces are used as 11.");
     System.out.println("The object of the game is for the player to draw cards totaling as close to 21 as possible, without going over, than the dealer's cards.");
     System.out.println("Hit: If you hit, you take another card in the hope of getting closer to 21.");
     System.out.println("If the player's total score exceeds 21 after hitting, the player is said to \"bust\" and loses. ");
     System.out.println("Stand: If you stand, you elect to draw no more cards in the hope that the current total will beat the dealer. ");
-    System.out.println("\n\n Please press 1 to start the game.");   
+    System.out.println("\n\n Please enter 1 to start the game.");   
   }
   
   int playerOneScore = 0, playerTwoScore = 0, finalScore;
@@ -1301,21 +1301,32 @@ class BlackJack implements ActionListener // for buttons
     {   
       pressedStand = true; 
       if (pressedStand && pressedStand2)   // if both (the dealer and the player ) have pressed stand 
+      {
         scoreLabel.setText (winnerCalculation(playerOneScore,playerTwoScore) + " " + playerOneScore + " - " + playerTwoScore);//the game is ended & score is displayed 
+        hitButton2.removeActionListener(this);
+        hitButton.removeActionListener(this);  
+      }
       else if (pressedStand2 == false)  // else it is the dealer turn 
-        turnLabel.setText ("Dealer's Turn");       
-      
-      hitButton.removeActionListener(this);
+      {
+        turnLabel.setText ("Dealer's Turn");
+        hitButton.removeActionListener(this);
+      }
       
     }  
     else if(e.getSource() == standButton2)  // if the dealer presses the stand button
     { 
       pressedStand2 = true;
-      if (pressedStand && pressedStand2) // if both (the dealer and the player ) have pressed stand 
+      if (pressedStand && pressedStand2) // if both (the dealer and the player ) have pressed stand
+      {
+        hitButton2.removeActionListener(this);
+        hitButton.removeActionListener(this); 
         scoreLabel.setText (winnerCalculation(playerOneScore,playerTwoScore) + " " + playerOneScore + " - " + playerTwoScore); //the game is ended & the score is displayed
+      }      
       else 
+      {
         turnLabel.setText ("Player's Turn"); // else it is the player's turn   
-      hitButton2.removeActionListener(this);
+        hitButton2.removeActionListener(this);
+      }
     }  
   }  
   
